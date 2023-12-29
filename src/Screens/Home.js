@@ -39,7 +39,7 @@ export default function Home() {
               
               
               )
-            }) : <div>""""</div>
+            }) : <div><h1>Server Not Connected</h1></div>
           }
             </div>
         

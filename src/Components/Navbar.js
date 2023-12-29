@@ -24,6 +24,7 @@ export default function Navbar() {
         <li class="nav-item">
           <Link class="nav-link" to="/alumini">Alumini?</Link>
         </li>
+        
       </ul>
     </div>
   </div>

@@ -1,10 +1,19 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import { useLocation } from 'react-router-dom'
+import { useState } from 'react';
+import Popup from '../Components/Popup/Popup';
 
 export default function Details(props) {
+
     const location = useLocation();
     console.log(location)
+
+   
+
+    const [open, setopen] = useState(false);
+
+
 
     //   // Accessing data from URL parameters
     //   const searchParams = new URLSearchParams(location.search);
@@ -15,6 +24,8 @@ export default function Details(props) {
     //   const { state } = location;
     //   const nameFromState = state ? state.name : null;
     //   const emailFromState = state ? state.email : null;
+
+ 
 
     return (
         <div>
@@ -32,10 +43,10 @@ export default function Details(props) {
                                     <p class="mb-0"><strong class="pr-1">Email:</strong>{location.state.email}</p><br />
                                     <p class="mb-0"><strong class="pr-1">Phone:</strong>{location.state.data.phone}</p><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                                    <a href={location.state.data.instagram} target='_blank'><i  class="fa fa-instagram" style={{fontSize:"36px"}}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href={location.state.data.linkedin} target='_blank'><i class="fa fa-linkedin-square" style={{fontSize:"36px"}}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href={location.state.data.github} target='_blank'><i  class="fa fa-github" style={{fontSize:"36px"}}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href={location.state.data.twitter} target='_blank'><i  class="fa fa-twitter" style={{fontSize:"36px"}}></i></a>
+                                    <a style={{ color: 'black' }} href={location.state.data.instagram} target='_blank'><i class="fa fa-instagram" style={{ fontSize: "36px" }}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a style={{ color: 'black' }} href={location.state.data.linkedin} target='_blank'><i class="fa fa-linkedin-square" style={{ fontSize: "36px" }}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a style={{ color: 'black' }} href={location.state.data.github} target='_blank'><i class="fa fa-github" style={{ fontSize: "36px" }}></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a style={{ color: 'black' }} href={location.state.data.twitter} target='_blank'><i class="fa fa-twitter" style={{ fontSize: "36px" }}></i></a>
 
 
 
@@ -77,21 +88,33 @@ export default function Details(props) {
                                             <td>{location.state.data.college}</td>
                                         </tr>
                                     </table>
-                                    <button type="button" class="btn btn-primary">Resume</button>&nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-secondary">Request a 1:1 session</button>
+
+                                    <button type="button" class="btn btn-primary" >Resume</button>&nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-secondary" onClick={() => setopen(true)}>Request a 1:1 session</button>
+
+                                    {/* <button type="button" class="btn btn-secondary" onClick={handleemail} disabled={loading}>Request a 1:1 session</button> */}
                                 </div>
                             </div>
+
                             <div style={{ height: "26px" }}></div>
                             <div class="card shadow-sm">
                                 <div class="card-header bg-transparent border-0">
                                     <h3 class="mb-0"><i class="fa fa-clone pr-1"></i>Other Information</h3>
                                 </div>
                                 <div class="card-body pt-0">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    
+                                    <p>{location.state.data.about}</p>
+                                    <p><b>1.</b> Ask for Referral</p>
+                                    <p><b>2.</b> Ask for Resume review</p>
+                                    <p><b>3.</b> Ask for Mock Interview</p>
+                                    <p><b>4.</b> Need Project Guid</p>
+
+
                                 </div>
                             </div>
                         </div>
+                        {
+                            open ? <Popup closepop={() => setopen(false)} data={location.state.data}/> : null
+                        }
                     </div>
                 </div>
             </div>
