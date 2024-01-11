@@ -16,6 +16,8 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use('/api',require("./routes/Creatuser"));
 app.use('/api',require("./routes/Displaydata"));
+app.use('/api',require("./routes/Displayjobs"));
+app.use('/api',require("./routes/Createjob"));
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

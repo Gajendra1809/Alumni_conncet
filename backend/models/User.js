@@ -47,8 +47,8 @@ const UserSchema=new Schema({
         required:true
     },   
     img:{
-        data: Buffer,
-        contentType: String
+        type:String,
+        //required:true
     },
     resume:{
         data: Buffer,

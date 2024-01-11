@@ -5,12 +5,13 @@ import { useState } from 'react';
 import Popup from '../Components/Popup/Popup';
 
 export default function Details(props) {
+    
 
     const location = useLocation();
     console.log(location)
 
    
-
+    const [imgUrl,setImgUrl]=useState(location.state.data.img?location.state.data.img:'human.jpg')
     const [open, setopen] = useState(false);
 
 
@@ -29,14 +30,14 @@ export default function Details(props) {
 
     return (
         <div>
-            <Navbar /><br /><br />
+            <Navbar /><br /><br /><br /><br />
             <div class="emp-profile py-4">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="card shadow-sm">
                                 <div class="card-header bg-transparent text-center">
-                                    <img class="profile_img" src="human.jpg" alt="emp dp" />
+                                    <img class="profile_img" src={imgUrl} alt="emp dp" />
                                     <h3>{location.state.name}</h3>
                                 </div>
                                 <div class="card-body">

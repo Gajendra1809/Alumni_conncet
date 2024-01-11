@@ -41,12 +41,15 @@ const mongoDB = async () => {
         console.log('Mongo connected');
         
         const fetched_data = mongoose.model('fetched_data', new mongoose.Schema({}), 'users');
+        const fetched_jobs= mongoose.model('fetched_jobs', new mongoose.Schema({}), 'jobs');
         
         const data = await fetched_data.find({});
+        const jobs=await fetched_jobs.find({});
         
         global.person=data;
-        
-        console.log(data);
+        global.jobs=jobs;
+        //console.log(data);
+        console.log(jobs)
         
         //mongoose.disconnect(); // Disconnect from the database after fetching data
     } catch(error) {

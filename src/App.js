@@ -6,6 +6,8 @@ import Login from './Screens/Login';
 import Signup from './Screens/Signup';
 import Alumini from './Screens/Alumini';
 import Details from './Screens/Details';
+import Jobs from './Components/Jobs';
+import UploadJob from './Components/UploadJob';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route exact path="/signup" element={<Signup/>} />
         <Route exact path="/alumini" element={<Alumini/>} />
         <Route exact path="/details" element={<Details/>} />
+        <Route exact path="/jobs" element={<Jobs/>} />
+        <Route exact path="/uploadjobs" element={<UploadJob/>} />
       </Routes> 
     </div>
  </Router>
