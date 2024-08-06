@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Login from '../Screens/Login';
 import Navbar from './Navbar';
 import Jobcard from './Jobcard';
+import { useNavigate } from 'react-router-dom';
 
 export default function UploadJob() {
     const [flag, setFlag] = useState(false);
@@ -12,6 +13,8 @@ export default function UploadJob() {
     const [name, setName] = useState('')
     const [email, setEmail2] = useState('')
     const [jobs, setJobs] = useState();
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,28 +34,29 @@ export default function UploadJob() {
             alert("Job Not Uploaded")
         }
         setFlag2(!flag2)
-
-
-
     }
 
-
-
     useEffect(() => {
+        const authUser = localStorage.getItem('authUser');
+        if(!authUser){
+            setFlag(false);
+            navigate('/login');
+        }else{
+            setFlag(true);
+        }
         if (flag === true) {
-
-
-
             const loaddata = async () => {
-                let data = await fetch('http://localhost:5000/api/jobs', {
-                    method: "POST",
+                const token = localStorage.getItem('authToken');
+                let data = await fetch('http://localhost:5000/api/job/jobs', {
+                    method: "GET",
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
                 })
                 data = await data.json();
-                setJobs(data[0]);
-                console.log(data[0])
+                setJobs(data);
+                console.log(data)
 
             }
             loaddata();
@@ -63,7 +67,6 @@ export default function UploadJob() {
     return (
         <div><br /><br /><br /><br />
             {
-                flag ?
                     <div>
                         <Navbar />
                         <div className='container w-50'>
@@ -92,7 +95,7 @@ export default function UploadJob() {
                             <h3>Jobs uploaded by you :-</h3>
                             {
 
-                                jobs ? jobs.filter((job) => (job.email === email)).map((job) => {
+                                jobs ? jobs.map((job) => {
                                     return (
                                         <>
                                             <Jobcard key={job.position} data={job} flag={flag} />
@@ -100,13 +103,8 @@ export default function UploadJob() {
                                         </>
                                     )
                                 }) : ""
-
                             }
                         </div>
-                    </div> : 
-                    <div>
-                        <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Only Alumni can LogIn</h5>
-                    <Login setFlag={setFlag} setEmail2={setEmail2} />
                     </div>
             }
         </div>

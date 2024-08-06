@@ -13,7 +13,7 @@ export default function Card(props) {
     const navigate = useNavigate();
 
     const handleDetailsClick = () => {
-      navigate('/details', { state: { name: props.name, email: props.email, data:props.data } });
+      navigate('/details', { state: { id: props.data._id} });
     };
   return (
     <div>

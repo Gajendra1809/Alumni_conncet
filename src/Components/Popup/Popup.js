@@ -1,38 +1,12 @@
 import React from 'react'
 import { useRef, useEffect, useState } from "react";
-import emailjs from "@emailjs/browser";
 import "./popup.css"
-export default function Popup({closepop, ...props}) {
+export default function Popup({closepop}) {
 
-    useEffect(() => emailjs.init("iHbUpyytmStY8Pjh3"), []);
-    const emailRef = props.data.email;
-    const nameRef = props.data.name;
     const [loading, setLoading] = useState(false);
     const [cred,setcred]=useState({name:"",email:"",college:"",messege:""})
 
-    const handleemail = async (e) => {
-
-        e.preventDefault();
-        const serviceId = "service_f1qo0m6";
-        const templateId = "template_t266yaf";
-        try {
-            setLoading(true);
-            await emailjs.send(serviceId, templateId, {
-                to_name: props.data.name,
-                rec: "chilhategajendra@gmail.com",
-                from_name: cred.name,
-                college: cred.college,
-                from_email: cred.email
-
-            });
-            alert("Email Sent Successfully");
-        } catch (error) {
-            alert("Email not sent")
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    }
+ 
     const onChange = (event) => {
         setcred({ ...cred, [event.target.name]: event.target.value })
       }
@@ -41,7 +15,7 @@ export default function Popup({closepop, ...props}) {
      <div className="popup-body"><br />
       <h1>Fill this form</h1>&nbsp;
      
-      <form  onSubmit={handleemail} disabled={loading} >
+      <form disabled={loading} >
         
         <div>
             <label htmlFor="name">Name : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

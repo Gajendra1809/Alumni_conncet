@@ -15,7 +15,7 @@ export default function Alumini() {
     e.preventDefault();
 
     console.log(cred.img);
-    const response = await fetch('http://localhost:5000/api/alumini', {
+    const response = await fetch('http://localhost:5000/api/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -41,14 +41,6 @@ export default function Alumini() {
       document.getElementById('pic').files[0]
     );
       console.log(promise.$id);
-    // promise.then(function (response) {
-    //   const result = storage.getFileDownload('659e86fbd448772071fd', response.$id);
-    //   console.log(result.href);
-    //   setImgUrl(result.href)
-    //   //setImgId(response.$id); // Success
-    // }, function (error) {
-    //   console.log(error, "failed"); // Failure
-    // });
     try {
       const result=await storage.getFileDownload('659e86fbd448772071fd', promise.$id)
     console.log(result.href);
@@ -70,24 +62,6 @@ export default function Alumini() {
   return (
     <div >
       <Navbar /><br /><br /><br /><br />
-      {/* <form class="container m-5" onSubmit={handleSubmit}>
-  <div class="mb-3">
-    <label  class="form-label">Name</label>
-    <input type="text" class="form-control" name="name" value={cred.name} onChange={onChange}/>
-    
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Email</label>
-    <input type="email" class="form-control" name="email" value={cred.email} onChange={onChange}/>
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Password</label>
-    <input type="password" class="form-control" name="password" value={cred.password} onChange={onChange}/>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> */}
-
-
 
 
       <div class="container">

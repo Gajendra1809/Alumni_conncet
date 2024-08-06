@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+import mongoose from 'mongoose';
 const { Schema }=mongoose;
 const UserSchema=new Schema({
     name:{
@@ -56,4 +56,5 @@ const UserSchema=new Schema({
     }
 });
 
-module.exports=mongoose.model('user',UserSchema);
+const User=mongoose.model('users',UserSchema);
+export default User;

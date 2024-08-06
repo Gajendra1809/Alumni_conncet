@@ -7,15 +7,16 @@ export default function Jobs() {
     
 
     const loaddata=async ()=>{
-        let data=await fetch('http://localhost:5000/api/jobs', {
-            method: "POST",
+      const token = localStorage.getItem('authToken');
+        let data=await fetch('http://localhost:5000/api/job/jobs', {
+            method: "GET",
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
             }
           })
         data=await data.json();
-        setJobs(data[0]);
-        console.log(data[0])
+        setJobs(data);
      
     }
   

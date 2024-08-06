@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
+import { useNavigate } from 'react-router-dom';
 
-export default function Login({setFlag,setEmail2}) {
+export default function Login() {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+
+  const navigate = useNavigate();
 
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    const response=await fetch('http://localhost:5000/api/loginuser',{
+    const response=await fetch('http://localhost:5000/api/user/login',{
       method:'POST',
           headers:{
               'Content-Type':'application/json'
@@ -18,24 +21,22 @@ export default function Login({setFlag,setEmail2}) {
 
     const json=await response.json()
       console.log(json)
-      if(!json.success)
-      {
-          alert("Enter valid credentials")
-      }
-      if(json.success)
-      {
-        setFlag(true);
-        console.log("logged in")
+      if(json.success){
+        localStorage.setItem('authUser',JSON.stringify(json.result)); 
+        localStorage.setItem('authToken',json.token);
+        navigate('/uploadjobs');        
+      }else{
+        alert("Enter valid credentials")
       }
      
   }
   useEffect(()=>{
-    setEmail2(email);
+    
    }
-    ,[email])
+    ,[])
   return (
     <div className='container'>
-      <Navbar />
+      <Navbar /><br /><br /><br />
       <form onSubmit={handleSubmit}>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
