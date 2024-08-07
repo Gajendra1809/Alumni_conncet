@@ -2,7 +2,7 @@ import Job from "../models/Job.js";
 
 export const getJobs = async (req, res) => {
     try {
-        const jobs = await Job.find();
+        const jobs = await Job.find().sort({ createdAt: -1 });
         res.status(200).json({ success: true, data: jobs });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });
@@ -12,7 +12,7 @@ export const getJobs = async (req, res) => {
 export const getJobsByUser = async (req, res) => {
     const id = req.user._id;
     try {
-        const jobs = await Job.find({ user_id: id });
+        const jobs = await Job.find({ user_id: id }).sort({ createdAt: -1 });
         res.status(200).json({ success: true, data: jobs });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });

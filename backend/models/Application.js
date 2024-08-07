@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const ApplicationSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -22,7 +21,7 @@ const ApplicationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'jobs'
     }
-})
+},{ timestamps: true })
 
 const Application = mongoose.model('applications', ApplicationSchema);
 export default Application

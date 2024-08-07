@@ -46,7 +46,7 @@ export default function Popup({closepop, user_id}) {
             <label htmlFor="name">Messege : </label>&nbsp;&nbsp;
             <input type="text" name="message" value={cred.message} onChange={onChange}/>
         </div>&nbsp;<br />
-        <button type='submit' class="btn btn-success">Send Mail</button>&nbsp;
+        <button type='submit' class="btn btn-success">Send Message</button>&nbsp;
         <button onClick={closepop} class="btn btn-danger">X</button>
       </form>
       

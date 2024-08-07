@@ -54,7 +54,7 @@ const UserSchema=new Schema({
         data: Buffer,
         contentType: String
     }
-});
+},{timestamps:true});
 
 const User=mongoose.model('users',UserSchema);
 export default User;

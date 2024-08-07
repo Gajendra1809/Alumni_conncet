@@ -18,7 +18,7 @@ const MessageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users'
     }
-})
+},{timestamps:true});
 
 const Message = mongoose.model('messages', MessageSchema);
 export default Message

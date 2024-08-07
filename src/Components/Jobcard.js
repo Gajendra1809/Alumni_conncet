@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Jobpopup from './Popup/Jobpopup';
 
 export default function Jobcard(props) {
        
@@ -38,7 +39,7 @@ export default function Jobcard(props) {
                 </div>
             </div>
             {
-                // open ? <Popup closepop={setopen} user_id={props.data._id} /> : ""
+                open ? <Jobpopup closepop={()=>setopen(false)} job_id={props.data._id} /> : ""
             }
         </div>
     )

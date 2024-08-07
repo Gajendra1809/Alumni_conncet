@@ -19,7 +19,7 @@ const JobSchema=new Schema({
         ref:'users'
     }
     
-});
+},{timestamps:true});
 
 const Job=mongoose.model('jobs',JobSchema);
 export default Job;

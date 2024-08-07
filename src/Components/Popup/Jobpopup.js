@@ -4,22 +4,24 @@ import "./popup.css"
 export default function Jobpopup({closepop, job_id}) {
 
     const [loading, setLoading] = useState(false);
-    const [cred,setcred]=useState({name:"",email:"",message:"", user_id:user_id})
+    const [cred,setcred]=useState({name:"",email:"",phone:"",resume:""})
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/message/message', {
+        const response = await fetch('http://localhost:5000/api/application/application', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({name:cred.name,email:cred.email,message:cred.message,user_id:cred.user_id})
-        });
+          body: JSON.stringify({name:cred.name,email:cred.email,phone:cred.phone,resume:"testResume.url",job_id:job_id})
+        })
         const json = await response.json();
         if (json.success) {
-          alert('Message Sent!');
+          alert('Application Sent!');   
           closepop();
+        } else {
+          alert(json.error);   
         }
         setLoading(false);
       }
@@ -43,10 +45,10 @@ export default function Jobpopup({closepop, job_id}) {
             <input type="text" name="email" value={cred.email} onChange={onChange}/>
         </div>&nbsp;
         <div>
-            <label htmlFor="name">Messege : </label>&nbsp;&nbsp;
-            <input type="text" name="message" value={cred.message} onChange={onChange}/>
+            <label htmlFor="name">Phone : </label>&nbsp;&nbsp;
+            <input type="text" name="phone" value={cred.phone} onChange={onChange}/>
         </div>&nbsp;<br />
-        <button type='submit' class="btn btn-success">Send Mail</button>&nbsp;
+        <button type='submit' class="btn btn-success">Send Application</button>&nbsp;
         <button onClick={closepop} class="btn btn-danger">X</button>
       </form>
       
