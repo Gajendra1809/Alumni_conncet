@@ -24,7 +24,7 @@ export default function Login() {
       if(json.success){
         localStorage.setItem('authUser',JSON.stringify(json.result)); 
         localStorage.setItem('authToken',json.token);
-        navigate('/uploadjobs');        
+        window.location.reload();
       }else{
         alert("Enter valid credentials")
       }
@@ -37,6 +37,7 @@ export default function Login() {
   return (
     <div className='container'>
       <Navbar /><br /><br /><br />
+      <h3>Only Alumni Can Login</h3>
       <form onSubmit={handleSubmit}>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>

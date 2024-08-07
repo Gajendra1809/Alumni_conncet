@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef, useEffect, useState } from "react";
 import "./popup.css"
-export default function Popup({closepop, user_id}) {
+export default function Jobpopup({closepop, job_id}) {
 
     const [loading, setLoading] = useState(false);
     const [cred,setcred]=useState({name:"",email:"",message:"", user_id:user_id})

@@ -16,14 +16,38 @@ export default function Navbar() {
           <Link class="nav-link active" aria-current="page" to="/">Home</Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link" to="/alumini">Alumini?</Link>
-        </li>
-        <li class="nav-item">
           <Link class="nav-link" to="/jobs">Jobs</Link>
         </li>
-        <li class="nav-item">
-          <Link class="nav-link" to="/uploadjobs">UploadJobs</Link>
-        </li>
+        {
+            localStorage.getItem('authToken') ? "":
+            <li class="nav-item">
+              <Link class="nav-link" to="/alumini">Alumini?</Link>
+            </li>
+        }
+        {
+            localStorage.getItem('authToken') ?
+            <li class="nav-item">
+                <Link class="nav-link" to="/uploadjobs">UploadJobs</Link>
+            </li>
+             : ""
+        }
+        {
+            localStorage.getItem('authToken') ?
+            <li class="nav-item">
+                <Link class="nav-link" to="/notifications">Notifications</Link>
+            </li>
+             : ""
+        }
+        
+        {
+            localStorage.getItem('authToken') ?
+            <li class="nav-item">
+                <button className='btn btn-danger' onClick={() => { localStorage.removeItem('authToken'); localStorage.removeItem('authUser'); window.location.href = "/"}}>Logout</button>
+            </li> :
+            <li class="nav-item">
+                <Link class="nav-link" to="/login">Login</Link>
+            </li>
+        }
         
       </ul>
     </div>

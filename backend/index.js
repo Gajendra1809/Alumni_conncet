@@ -7,8 +7,7 @@ dotenv.config()
 
 import userRouter from './routes/user.route.js'
 import jobRouter from './routes/job.route.js'
-
-import authenticate from './middlewares/authenticate.middleware.js'
+import messageRouter from './routes/message.route.js'
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -19,7 +18,7 @@ mongoDB()
 
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow your frontend origin
+  origin: 'http://localhost:3000', // Allow the frontend origin
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
@@ -29,11 +28,8 @@ app.use(cors(corsOptions));
 app.use(express.json())
 
 app.use('/api/user', userRouter);
-app.use('/api/job', authenticate, jobRouter);
-// app.use('/api',require("./routes/Creatuser"));
-// app.use('/api',require("./routes/Displaydata"));
-// app.use('/api',require("./routes/Displayjobs"));
-// app.use('/api',require("./routes/Createjob"));
+app.use('/api/job', jobRouter);
+app.use('/api/message', messageRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

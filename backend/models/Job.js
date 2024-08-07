@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 const { Schema }=mongoose;
 const JobSchema=new Schema({
-    name:{
-        type:String,
-        required:true
-    },
     position:{
         type:String,
         required:true
@@ -14,14 +10,14 @@ const JobSchema=new Schema({
         required:true
      }
     ,
-    skills:{
+    description:{
         type:String,
         required:true
     },
-    email:{
-        type:String,
-        required:true
-    },
+    user_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'users'
+    }
     
 });
 

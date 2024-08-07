@@ -8,22 +8,21 @@ export default function UploadJob() {
     const [flag, setFlag] = useState(false);
     const [flag2, setFlag2] = useState(false);
     const [position, setPosition] = useState('')
-    const [skills, setSkills] = useState('')
+    const [description, setDescription] = useState('')
     const [company, setCompany] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail2] = useState('')
     const [jobs, setJobs] = useState();
 
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/createjob', {
+        const response = await fetch('http://localhost:5000/api/job/job', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`
             },
-            body: JSON.stringify({ name, position, skills, company, email })
+            body: JSON.stringify({ position, description, company })
         })
         const json = await response.json()
         console.log(json)
@@ -47,7 +46,7 @@ export default function UploadJob() {
         if (flag === true) {
             const loaddata = async () => {
                 const token = localStorage.getItem('authToken');
-                let data = await fetch('http://localhost:5000/api/job/jobs', {
+                let data = await fetch('http://localhost:5000/api/job/job', {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -55,12 +54,15 @@ export default function UploadJob() {
                     }
                 })
                 data = await data.json();
-                setJobs(data);
-                console.log(data)
+                if(data.success){
+                    setJobs(data.data);
+                } else {
+                    navigate('/login');
+                    alert("Please login first!");
+                }
 
             }
             loaddata();
-
         }
     }, [flag, flag2])
 
@@ -72,10 +74,6 @@ export default function UploadJob() {
                         <div className='container w-50'>
                             <form onSubmit={handleSubmit}>
                                 <div class="form-group ">
-                                    <label >Name</label>
-                                    <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
-                                    <label >Email</label>
-                                    <input value={email} onChange={(e) => { setEmail2(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
                                     <label >Company Name</label>
                                     <input value={company} onChange={(e) => { setCompany(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
                                     <label >Position</label>
@@ -85,7 +83,7 @@ export default function UploadJob() {
 
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Job Discription</label>
-                                    <textarea value={skills} onChange={(e) => { setSkills(e.target.value) }} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea value={description} onChange={(e) => { setDescription(e.target.value) }} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                                 <button type='submit' className='danger'>Add Job</button>
                             </form>

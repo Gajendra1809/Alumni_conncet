@@ -16,8 +16,11 @@ export default function Jobs() {
             }
           })
         data=await data.json();
-        setJobs(data);
-     
+        if(data.success){
+            setJobs(data.data);
+        } else {
+            alert(data.message);
+        }
     }
   
     useEffect(()=>{

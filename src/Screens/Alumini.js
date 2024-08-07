@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { Client, Storage, ID } from "appwrite";
+import { Link } from 'react-router-dom';
 
 export default function Alumini() {
   const [cred, setCred] = useState({ name: "", email: "", password: "", phone: "", company: "", yop: "", instagram: "", linkedin: "", github: "", college: "", designation: "", img: "" })

@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
 
 export default function Jobcard(props) {
+       
+    const [open, setopen] = useState(false);
 
-    const [name,setName]=useState(props.data.name);
-    const [position,setPosition]=useState(props.data.position);
-       
-    const deleteJob=async()=>{
-       
-        
-       
-        const response = await fetch('http://localhost:5000/api/deletejob', {
-            method: 'POST',
+    const deleteJob=async(id)=>{
+        const response = await fetch('http://localhost:5000/api/job/job/'+id, {
+            method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`
             },
-            body: JSON.stringify({name,position})
+            body: JSON.stringify()
         })
         const json = await response.json()
         console.log(json)
@@ -24,7 +21,6 @@ export default function Jobcard(props) {
         if (!json.success) {
             alert("Job Not Deleted")
         }
-  
     }
     return (
         <div>
@@ -35,13 +31,15 @@ export default function Jobcard(props) {
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{props.data.company}</h5>
-                    <p class="card-text">{props.data.skills}</p>
+                    <p class="card-text">{props.data.description}</p>
                     {
-                        props.flag ? <button onClick={()=>deleteJob()} className='bg-danger btn'>Delete</button>: <button className='bg-primary btn'>Apply</button>
+                        props.flag ? <button onClick={()=>deleteJob(props.data._id)} className='bg-danger btn'>Delete</button>: <button className='bg-primary btn' onClick={()=>setopen(true)}>Apply</button>
                     }
-                    
                 </div>
             </div>
+            {
+                // open ? <Popup closepop={setopen} user_id={props.data._id} /> : ""
+            }
         </div>
     )
 }

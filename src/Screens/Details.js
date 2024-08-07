@@ -114,7 +114,7 @@ export default function Details(props) {
                             </div>
                         </div>
                         {
-                            open ? <Popup closepop={() => setopen(false)} /> : null
+                            open ? <Popup closepop={() => setopen(false)} user_id={user._id} /> : null
                         }
                     </div>
                 </div>
