@@ -20,6 +20,10 @@ const ApplicationSchema = new mongoose.Schema({
     job_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'jobs'
+    },
+    read: {
+        type: Boolean,
+        default: false
     }
 },{ timestamps: true })
 

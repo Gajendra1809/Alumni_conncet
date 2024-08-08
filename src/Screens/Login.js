@@ -24,7 +24,7 @@ export default function Login() {
       if(json.success){
         localStorage.setItem('authUser',JSON.stringify(json.result)); 
         localStorage.setItem('authToken',json.token);
-        window.location.reload();
+        window.location.href='/notifications'
       }else{
         alert("Enter valid credentials")
       }
