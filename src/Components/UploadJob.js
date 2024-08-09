@@ -75,15 +75,15 @@ export default function UploadJob() {
                             <form onSubmit={handleSubmit}>
                                 <div class="form-group ">
                                     <label >Company Name</label>
-                                    <input value={company} onChange={(e) => { setCompany(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
+                                    <input required value={company} onChange={(e) => { setCompany(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
                                     <label >Position</label>
-                                    <input value={position} onChange={(e) => { setPosition(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
+                                    <input required value={position} onChange={(e) => { setPosition(e.target.value) }} type="text" class="form-control w-30" id="exampleFormControlInput1" />
                                 </div>
 
 
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Job Discription</label>
-                                    <textarea value={description} onChange={(e) => { setDescription(e.target.value) }} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea required value={description} onChange={(e) => { setDescription(e.target.value) }} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div><br/>
                                 <button type='submit' className='btn btn-primary btn-sm'>Add Job</button>
                             </form>

@@ -7,6 +7,7 @@ import JobApplicationCard from '../Components/JobApplicationCard'
 export default function Notification() {
 
   const [messages, setMessages] = useState()
+  const [read_messages, setRead_messages] = useState()
   const [jobApplications, setJobApplications] = useState()
   
   const loadData = async () => {
@@ -22,6 +23,21 @@ export default function Notification() {
     if(messages.success){
       setMessages(messages.data);
       console.log(messages)
+    } else {
+      alert("Server Not Connected")
+    }
+
+    let read_messages = await fetch('http://localhost:5000/api/message/readmessage', {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    read_messages = await read_messages.json()
+    if(read_messages.success){
+      setRead_messages(read_messages.data);
+      console.log(read_messages)
     } else {
       alert("Server Not Connected")
     }
@@ -71,6 +87,14 @@ export default function Notification() {
             )) : <div><h6>No unseen job applications</h6></div>
           }
         </div>
+      </div>
+      <div><br /><br /><br />
+        <h2>Messages marked as read will apear here...</h2><br /><br /><br />
+        {
+          read_messages && read_messages.length > 0? read_messages.map(data => (
+            <Messagecard key={data._id} data={data} loadData={() => loadData()} />
+          )) : <div><h6>No read messages</h6></div>
+        }
       </div>
     </div>
   );

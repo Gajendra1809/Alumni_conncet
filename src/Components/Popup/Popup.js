@@ -36,15 +36,15 @@ export default function Popup({closepop, user_id}) {
         
         <div>
             <label htmlFor="name">Name : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="name" value={cred.name} onChange={onChange}/>
+            <input required type="text" name="name" value={cred.name} onChange={onChange}/>
         </div>&nbsp;
         <div>
             <label htmlFor="name">Email : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="email" value={cred.email} onChange={onChange}/>
+            <input required type="text" name="email" value={cred.email} onChange={onChange}/>
         </div>&nbsp;
         <div>
             <label htmlFor="name">Messege : </label>&nbsp;&nbsp;
-            <input type="text" name="message" value={cred.message} onChange={onChange}/>
+            <input required type="text" name="message" value={cred.message} onChange={onChange}/>
         </div>&nbsp;<br />
         <button type='submit' class="btn btn-success">Send Message</button>&nbsp;
         <button onClick={closepop} class="btn btn-danger">X</button>

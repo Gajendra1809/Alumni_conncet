@@ -15,9 +15,10 @@ export default function Messagecard(props) {
     response = await response.json()
     if (response.success) {
       props.loadData();
-      alert("Marked as read")
+      // alert("Marked as read")
     }
   };
+
 
   // Construct Gmail compose link
   const gmailComposeLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Reply to your message&body=${encodeURIComponent(message)}`;
@@ -33,11 +34,19 @@ export default function Messagecard(props) {
           <p className="card-text">
             {message} <a href={gmailComposeLink} target="_blank" rel="noopener noreferrer">~Reply</a>
           </p>
-          <h6 onClick={()=>{
-            if(window.confirm("Are you sure you want to mark this message as read?")){
-              markAsRead()
-            }
-          }}>Mark as read</h6>
+          {
+            props.data.read ? 
+            <h6 onClick={()=>{
+              if(window.confirm("Are you sure you want to mark this message as Unread?")){
+                markAsRead()
+              }
+            }}>Mark as Unread</h6> :
+            <h6 onClick={()=>{
+              if(window.confirm("Are you sure you want to mark this message as read?")){
+                markAsRead()
+              }
+            }}>Mark as read</h6>
+          }
         </div>
       </div>
       <br />

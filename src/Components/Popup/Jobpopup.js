@@ -49,19 +49,19 @@ export default function Jobpopup({ closepop, job_id }) {
         <form disabled={loading} onSubmit={handleSubmit} encType="multipart/form-data">
           <div>
             <label htmlFor="name">Name: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="name" value={cred.name} onChange={onChange} />
+            <input required type="text" name="name" value={cred.name} onChange={onChange} />
           </div>&nbsp;
           <div>
             <label htmlFor="name">Email: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="email" value={cred.email} onChange={onChange} />
+            <input required type="text" name="email" value={cred.email} onChange={onChange} />
           </div>&nbsp;
           <div>
             <label htmlFor="name">Phone: </label>&nbsp;&nbsp;
-            <input type="text" name="phone" value={cred.phone} onChange={onChange} />
+            <input required type="text" name="phone" value={cred.phone} onChange={onChange} />
           </div>&nbsp;
           <div>
             <label htmlFor="name">Upload Resume: </label>&nbsp;&nbsp;
-            <input type="file" name="resume" onChange={onChange} />
+            <input required type="file" name="resume" onChange={onChange} />
           </div>&nbsp;
           <br />
           <button type='submit' className="btn btn-success">Send Application</button>&nbsp;
