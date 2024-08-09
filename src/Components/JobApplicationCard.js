@@ -19,6 +19,8 @@ export default function JobApplicationCard(props) {
     }
   }
 
+  const gmailComposeLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${props.data.email}&su=Reply to your message&body=${encodeURIComponent("Hi, I would like to call you regarding your job."+props.data.job_id)}`;
+
   return (
     <div>
          <div class="card">
@@ -29,7 +31,12 @@ export default function JobApplicationCard(props) {
                 <div class="card-body">
                     <a href={props.data.resume} target="_blank">View Resume -></a>
                     <p class="card-text">Job ID:-{props.data.job_id}</p>
-                    <h6 onClick={markAsRead}>Reject</h6>
+                    <a class="btn btn-success btn-sm" href={gmailComposeLink} target="_blank">Accept and Send Email</a>&nbsp;&nbsp;
+                    <button class="btn btn-danger btn-sm" onClick={() => {
+                      if(window.confirm("Are you sure you want to reject this application?")){
+                        markAsRead()
+                      }
+                    }}>Reject</button>
                 </div>
             </div><br/>
     </div>

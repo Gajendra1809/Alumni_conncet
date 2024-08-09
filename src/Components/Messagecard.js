@@ -33,7 +33,11 @@ export default function Messagecard(props) {
           <p className="card-text">
             {message} <a href={gmailComposeLink} target="_blank" rel="noopener noreferrer">~Reply</a>
           </p>
-          <h6 onClick={markAsRead}>Mark as read</h6>
+          <h6 onClick={()=>{
+            if(window.confirm("Are you sure you want to mark this message as read?")){
+              markAsRead()
+            }
+          }}>Mark as read</h6>
         </div>
       </div>
       <br />

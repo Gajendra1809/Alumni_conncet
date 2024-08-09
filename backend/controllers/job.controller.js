@@ -2,7 +2,7 @@ import Job from "../models/Job.js";
 
 export const getJobs = async (req, res) => {
     try {
-        const jobs = await Job.find().sort({ createdAt: -1 });
+        const jobs = await Job.find().populate("user_id","name").sort({ createdAt: -1 });
         res.status(200).json({ success: true, data: jobs });
     } catch (error) {
         res.status(404).json({ success: false, message: error.message });

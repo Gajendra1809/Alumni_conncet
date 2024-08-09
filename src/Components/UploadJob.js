@@ -84,8 +84,8 @@ export default function UploadJob() {
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Job Discription</label>
                                     <textarea value={description} onChange={(e) => { setDescription(e.target.value) }} class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <button type='submit' className='danger'>Add Job</button>
+                                </div><br/>
+                                <button type='submit' className='btn btn-primary btn-sm'>Add Job</button>
                             </form>
                         </div>
                         <br /><br />
